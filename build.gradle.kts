@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
 }
 
+
 group = "at.aau.serg"
 version = "1.0.0"
 
@@ -35,4 +36,16 @@ tasks.withType<Test> {
 }
 kotlin {
     jvmToolchain(21)
+}
+springBoot {
+    mainClass.set("at.aau.serg.SpringAppKt")
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun> {
+    mainClass.set("at.aau.serg.SpringAppKt")
+}
+
+tasks.withType<org.gradle.jvm.tasks.Jar> {
+    manifest {
+        attributes["Main-Class"] = "at.aau.serg.SpringAppKt"}
 }
